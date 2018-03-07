@@ -3,7 +3,7 @@
 import unittest
 
 try:
-    from jenkinsapi import Jenkins
+    from jenkinsapi.jenkins import Jenkins
 except ImportError:
     print("Jenkins was not found")
 
