@@ -1,48 +1,48 @@
 """Contains application configuration"""
-import json
+import etcd3
 import socket
+import re
 
 
 class Configuration:
     """This class contains application configuration"""
 
-    def __init__(self, hostname=None, jenkins=None, github=None):
-        self.hostname = hostname
-        self.jenkins_url = jenkins
-        self.github_url = github
+    def __init__(self, hostname=None, jenkins=None):
+        if hostname is None:
+            self.set_hostname()
+        else:
+            self.hostname = hostname
+        if jenkins is None:
+            jenkins = 'localhost'
+        self.configuration = {'hostname': hostname, 'jenkins_url': jenkins}
 
-    def set_configuration(self, configuration_json):
-        """Set initial configuration"""
-        configuration = json.loads(configuration_json)
-        self.set_hostname(configuration['hostname'])
-        self.set_jenkins_url(configuration['jenkins_url'])
-        self.set_github_url(configuration['github_url'])
+    def init_configuration(self, etcd_connection):
+        client = etcd3.client(etcd_connection[0], etcd_connection[1])
+        for value, meta in client.get_prefix('/' + self.get_hostname()):
+            key = re.split(r'/', meta.key.decode("utf-8"))
+            self.configuration[key[2]] = value.decode("utf-8")
+
+    def set_configuration(self, etcd_connection, property_dictionary):
+        """Set the configuration"""
+        client = etcd3.client(etcd_connection[0], etcd_connection[1])
+        dictionary_keys = property_dictionary.keys()
+        for key in dictionary_keys:
+            client_key = '/' + self.get_hostname() + '/' + key
+            client.put(client_key, property_dictionary[key])
 
     def get_configuration(self):
         """Get the configuration for the application"""
-        return json.dumps(self.__dict__, sort_keys=True)
+        return self.configuration
 
-    def set_github_url(self, url):
-        """Set GitHub URL"""
-        self.github_url = url
-
-    def get_github_url(self):
-        """Get GitHub URL"""
-        return self.github_url
-
-    def set_jenkins_url(self, url):
-        """Set Jenkins URL"""
-        self.jenkins_url = url
-
-    def get_jenkins_url(self):
-        """Get Jenkins URL"""
-        return self.jenkins_url
+    def set_configuration_property(self, etcd_connection, key, value):
+        """Add a configuration key value pair"""
+        self.set_configuration(etcd_connection, {key: value})
 
     def set_hostname(self, hostname=None):
         """Set the hostname"""
         if hostname is None:
             hostname = socket.gethostname()  # pragma: no cover
-        self.hostname = hostname
+        self.hostname = hostname.lower()
 
     def get_hostname(self):
         """Get the hostname"""
