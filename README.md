@@ -13,3 +13,11 @@ The third party python packages of this project is the following:
 Without the packages installed, this script will fail.
 
 The [blinkt!](https://shop.pimoroni.com/products/blinkt) library is currently only supported on a [Raspberry Pi](https://www.raspberrypi.org/)
+
+## Local installation
+The easiest way to run the system locally is to use [Docker](https://www.docker.com/) as a way to have [Jenkins](https://jenkins.io/) and [etcd](https://coreos.com/etcd/) available
+
+### docker setup
+  - etcd: ```docker run -d -p 2379:2379 -p 2380:2380 --name etcd quay.io/coreos/etcd:latest /usr/local/bin/etcd --listen-client-urls http://0.0.0.0:2379 --initial-advertise-peer-urls http://localhost:2380 --advertise-client-urls http://localhost:2379```
+  - jenkins: ```docker run -d -P jenkins:latest```
+      - configure Jenkins so it can be used.  
