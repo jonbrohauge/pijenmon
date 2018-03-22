@@ -13,6 +13,9 @@ The third party python packages of this project is the following:
   - [etcd3](https://pypi.python.org/pypi/etcd3)
 
 Without these packages installed, this script will fail.
+ - Install _etcd_: `pip3 install etcd3`
+ - Install _Jenkins API_: `pip3 install python-jenkins`
+ 
 
 The [blinkt!](https://shop.pimoroni.com/products/blinkt) library is currently only supported on a [Raspberry Pi](https://www.raspberrypi.org/)
 
