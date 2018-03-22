@@ -9,12 +9,12 @@ The hardware components of this project is the following:
 
 The third party python packages of this project is the following:
   - [blinkt!](https://shop.pimoroni.com/products/blinkt)
-  - [Jenkins API](https://pypi.python.org/pypi/python-jenkins)
+  - [Jenkins API](https://pypi.python.org/pypi/jenkinsapi)
   - [etcd3](https://pypi.python.org/pypi/etcd3)
 
 Without these packages installed, this script will fail.
  - Install _etcd_: `pip3 install etcd3`
- - Install _Jenkins API_: `pip3 install python-jenkins`
+ - Install _Jenkins API_: `pip3 install jenkinsapi`
  
 
 The [blinkt!](https://shop.pimoroni.com/products/blinkt) library is currently only supported on a [Raspberry Pi](https://www.raspberrypi.org/)
