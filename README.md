@@ -1,5 +1,7 @@
 # piJenMon
 
+## Raspberry Pi monitoring Jenkins jobs build status
+
 This project is a collection of python scripts that has the sole purpose of showing the status of all builds on a Jenkins Server.
 This is meant to be a multi unit application, so all configuration of the instance is kept in an [etcd](https://coreos.com/etcd/) property dictionary, i.e. keeping each running instance stateless.
 
