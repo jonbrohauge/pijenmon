@@ -37,7 +37,8 @@ setup(
     ],
     keywords='raspberrypi python jenkins',
     packages=find_packages(exclude=['contrib', 'docs', 'test']),
-    install_requires=['jenkinsapi', 'etcd3', 'blinkt'],  # Optional
+    # install_requires=['jenkinsapi', 'etcd3'],
+    install_requires=['jenkinsapi', 'etcd3', 'blinkt'],
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
@@ -68,32 +69,14 @@ setup(
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
     data_files=[('my_data', ['data/data_file'])],  # Optional
 
-    # To provide executable scripts, use entry points in preference to the
-    # "scripts" keyword. Entry points provide cross-platform support and allow
-    # `pip` to create the appropriate form of executable for the target
-    # platform.
-    #
-    # For example, the following would provide a command called `sample` which
-    # executes the function `main` from this package when invoked:
-    entry_points={  # Optional
+    entry_points={
         'console_scripts': [
-            'sample=sample:main',
+            'pijenmon=pijenmon:main',
         ],
     },
 
-    # List additional URLs that are relevant to your project as a dict.
-    #
-    # This field corresponds to the "Project-URL" metadata fields:
-    # https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use
-    #
-    # Examples listed include a pattern for specifying where the package tracks
-    # issues, where the source is hosted, where to say thanks to the package
-    # maintainers, and where to support the project financially. The key is
-    # what's used to render the link text on PyPI.
-    project_urls={  # Optional
-        'Bug Reports': 'https://github.com/pypa/sampleproject/issues',
-        'Funding': 'https://donate.pypi.org',
-        'Say Thanks!': 'http://saythanks.io/to/example',
-        'Source': 'https://github.com/pypa/sampleproject/',
+    project_urls={
+        'Bug Reports': 'https://github.com/legevognen/pijenmon/issues',
+        'Source': 'https://github.com/legevognen/pijenmon/',
     },
 )
