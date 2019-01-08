@@ -1,4 +1,4 @@
-= consul
+= Key/Value Store
 Jon Brohauge <jonbrohauge@gmail.com>
 :linkattrs:
 
