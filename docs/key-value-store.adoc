@@ -1,4 +1,4 @@
-= etcd
+= consul
 Jon Brohauge <jonbrohauge@gmail.com>
 :linkattrs:
 
