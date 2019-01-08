@@ -27,5 +27,5 @@ The easiest way to run the system locally is to use [Docker](https://www.docker.
 ### docker setup
 The etcd docker images does not run on a raspberry pi out of the box. There exists custom images, but I prefer just to use my laptop.
   - etcd: `docker run -d -p 2379:2379 -p 2380:2380 --env "ETCDCTL_API=3" --name etcd quay.io/coreos/etcd:latest /usr/local/bin/etcd --listen-client-urls http://0.0.0.0:2379 --initial-advertise-peer-urls http://localhost:2380 --advertise-client-urls http://localhost:2379`
-  - jenkins: `docker run -d -p 8888:8080 --name jenkins jenkins:latest`
+  - jenkins: `docker run -d -p 8888:8080 --name jenkins jenkins/jenkins:lts`
       - configure Jenkins so it can be used.
