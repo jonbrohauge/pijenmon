@@ -1,4 +1,10 @@
 = Documentation
 Jon Brohauge <jonbrohauge@gmail.com>
 
-This is some documentation
+The idea behind this project is to have a https://shop.pimoroni.com/products/blinkt[blinkt!] from https://shop.pimoroni.com/[Pimoroni] mounted on a https://www.raspberrypi.org/[Raspberry Pi], where the 8 LEDs display which percentage of Jenkins jobs have the status of either *SUCCESS*, *UNSTABLE*, or *FAILURE*. To ease the configuration in a multi unit environment, I have chosen to keep the configurational state in an https://coreos.com/etcd/[etcd] key/value store.
+
+== Initial Setup
+
+
+
+== First run
