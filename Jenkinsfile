@@ -1,7 +1,5 @@
-pipeline {
-  stage('demo') {
-    steps {
-      sh('Hello World')
-    }
-  }
+node {
+   stage('Hello World') {
+       echo 'Hello World'
+   }
 }
