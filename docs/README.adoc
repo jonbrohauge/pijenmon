@@ -9,7 +9,7 @@ To ease the configuration in a multi unit environment, I have chosen to keep the
 == Initial Setup
 . Download and install the latest image for your Raspberry Pi
 . Take note of the hostname of your unit
-. Create an entry in your etcd installation, following the instructions
+. Create an entry in your etcd installation. Refer to <<key-value-store.adoc#, using etcd>> for more information.
 
 
 == First run
