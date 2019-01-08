@@ -1,0 +1,35 @@
+= etcd
+Jon Brohauge <jonbrohauge@gmail.com>
+:linkattrs:
+
+== TL;DR
+
+https://coreos.com/etcd/[etcd, window="_blank"] is a key/value store.
+In this project it does not matter if it is specifically etcd being used.
+I just needed a key/value store that understands JSON.
+If you wish to use another key/value store, please do not hesitate to submit a PR.
+
+== Initial Setup
+
+Setup you installation byr following the instructions from https://coreos.com/etcd/[etcd, window="_blank"].
+During development I have used a locally run docker container.
+`docker run -d -p 2379:2379 -p 2380:2380 --env "ETCDCTL_API=3" --name etcd quay.io/coreos/etcd:latest /usr/local/bin/etcd --listen-client-urls http://0.0.0.0:2379 --initial-advertise-peer-urls http://localhost:2380 --advertise-client-urls http://localhost:2379`
+
+== Communication
+
+The URL where the configuration is placed is: `[BASE_ETCD_URL]/pijenmon/instance/[hostname]`,
+ i.e. `http://dev.local:2379/pijenmon/instance/raspberrypizerow` for an instance called `RaspberryPiZeroW` communicating with my development environment, called `dev.local`.
+
+== Format
+
+The format of the JSON response from etcd is important. Minimum requirements are the following key/value-pairs:
+[source,json]
+----
+{
+"hostname": "RaspberryPiZeroW",
+"organizations": ["Organization1", "Organization2", "Organization3"]
+}
+----
+
+The `hostname` is the name of the Raspberry Pi unit you wish to use.
+The `organizations` is a list of GitHub Organizations that contain the jobs, that are to be monitored for build status.
