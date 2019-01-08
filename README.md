@@ -3,7 +3,7 @@
 ## Raspberry Pi monitoring Jenkins jobs build status
 
 This project is a collection of python scripts that has the sole purpose of showing the status of all builds on a Jenkins Server.
-This is meant to be a multi unit application, so all configuration of the instance is kept in an [etcd](https://coreos.com/etcd/) property dictionary, i.e. keeping each running instance stateless.
+This is meant to be a multi unit application, so all configuration of the instance is kept in a [consul](https://www.consul.io/) property dictionary, i.e. keeping each running instance stateless.
 
 The hardware components of this project is the following:
  - [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
@@ -11,21 +11,20 @@ The hardware components of this project is the following:
 
 The third party python packages of this project is the following:
   - [blinkt!](https://shop.pimoroni.com/products/blinkt)
-  - [Jenkins API](https://pypi.python.org/pypi/jenkinsapi)
-  - [etcd3](https://pypi.python.org/pypi/etcd3)
+  - [Jenkins API](https://pypi.python.org/project/jenkinsapi/)
+  - [python-consul](https://pypi.org/project/python-consul/)
 
 Without these packages installed, this script will fail.
- - Install _etcd_: `pip3 install etcd3`
  - Install _Jenkins API_: `pip3 install jenkinsapi`
- 
+ - Install _python-consul_: `pip3 install python-consul`
 
 The [blinkt!](https://shop.pimoroni.com/products/blinkt) library is currently only supported on a [Raspberry Pi](https://www.raspberrypi.org/)
 
 ## Local installation
-The easiest way to run the system locally is to use [Docker](https://www.docker.com/) as a way to have [Jenkins](https://jenkins.io/) and [etcd](https://coreos.com/etcd/) available
+The easiest way to run the system locally is to use [Docker](https://www.docker.com/) as a way to have [Jenkins](https://jenkins.io/) and [consul](https://www.consul.io/) available
 
 ### docker setup
 The docker images do not run on a raspberry pi out of the box. There exists custom images, but I prefer just to use my laptop.
-  - etcd: `docker run -d -p 2379:2379 -p 2380:2380 --env "ETCDCTL_API=3" --name etcd quay.io/coreos/etcd:latest /usr/local/bin/etcd --listen-client-urls http://0.0.0.0:2379 --initial-advertise-peer-urls http://localhost:2380 --advertise-client-urls http://localhost:2379`
+  - consul: [TODO: Add how to run consul locally via docker]
   - jenkins: `docker run -d -p 8080:8080 --name jenkins jenkins/jenkins:lts`
       - configure Jenkins so it can be used.

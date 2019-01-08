@@ -4,12 +4,12 @@ Jon Brohauge <jonbrohauge@gmail.com>
 
 == TL;DR
 The idea behind this project is to have a https://shop.pimoroni.com/products/blinkt[blinkt!, window="_blank"] from https://shop.pimoroni.com/[Pimoroni, window="_blank"] mounted on a https://www.raspberrypi.org/[Raspberry Pi], where the 8 LEDs display which percentage of Jenkins jobs have the status of either *SUCCESS*, *UNSTABLE*, or *FAILURE*.
-To ease the configuration in a multi unit environment, I have chosen to keep the configurational state in an https://coreos.com/etcd/[etcd, window="_blank"] key/value store.
+To ease the configuration in a multi unit environment, I have chosen to keep the configurational state in an https://www.consul.io/[consul, window="_blank"] key/value store.
 
 == Initial Setup
 . Download and install the latest image for your Raspberry Pi
 . Take note of the hostname of your unit
-. Create an entry in your etcd installation. Refer to <<key-value-store.adoc#, using etcd>> for more information.
+. Create an entry in your consul installation. Refer to <<key-value-store.adoc#, using consul>> for more information.
 
 
 == First run
