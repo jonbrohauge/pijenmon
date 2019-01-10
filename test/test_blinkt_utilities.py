@@ -1,4 +1,4 @@
-"""Tests the utilities"""
+"""Tests the blinkt utilities"""
 
 import unittest
 
