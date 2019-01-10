@@ -37,8 +37,7 @@ setup(
     ],
     keywords='raspberrypi python jenkins',
     packages=find_packages(exclude=['contrib', 'docs', 'test']),
-    # install_requires=['jenkinsapi', 'etcd3'],
-    install_requires=['jenkinsapi', 'etcd3', 'blinkt'],
+    install_requires=['jenkinsapi', 'python-consul', 'blinkt'],
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
