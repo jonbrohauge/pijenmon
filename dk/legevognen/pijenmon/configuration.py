@@ -1,5 +1,5 @@
 """Contains application configuration"""
-import etcd3
+import consul
 import socket
 import re
 
@@ -16,15 +16,17 @@ class Configuration:
             jenkins = 'localhost'
         self.configuration = {'hostname': hostname, 'jenkins_url': jenkins}
 
-    def init_configuration(self, etcd_connection):
-        client = etcd3.client(etcd_connection[0], etcd_connection[1])
+    def init_configuration(self, keyvalue_connection):
+        client = consul.Consul(host=keyvalue_connection[0])
+        # client = etcd3.client(keyvalue_connection[0], keyvalue_connection[1])
         for value, meta in client.get_prefix('/' + self.get_hostname()):
             key = re.split(r'/', meta.key.decode("utf-8"))
             self.configuration[key[2]] = value.decode("utf-8")
 
-    def set_configuration(self, etcd_connection, property_dictionary):
+    def set_configuration(self, keyvalue_connection, property_dictionary):
         """Set the configuration"""
-        client = etcd3.client(etcd_connection[0], etcd_connection[1])
+        client = consul.Consul(host=keyvalue_connection[0])
+        # client = etcd3.client(keyvalue_connection[0], keyvalue_connection[1])
         dictionary_keys = property_dictionary.keys()
         for key in dictionary_keys:
             client_key = '/' + self.get_hostname() + '/' + key
@@ -34,9 +36,9 @@ class Configuration:
         """Get the configuration for the application"""
         return self.configuration
 
-    def set_configuration_property(self, etcd_connection, key, value):
+    def set_configuration_property(self, keyvalue_connection, key, value):
         """Add a configuration key value pair"""
-        self.set_configuration(etcd_connection, {key: value})
+        self.set_configuration(keyvalue_connection, {key: value})
 
     def set_hostname(self, hostname=None):
         """Set the hostname"""
