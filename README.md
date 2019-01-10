@@ -25,6 +25,6 @@ The easiest way to run the system locally is to use [Docker](https://www.docker.
 
 ### docker setup
 The docker images do not run on a raspberry pi out of the box. There exists custom images, but I prefer just to use my laptop.
-  - consul: [TODO: Add how to run consul locally via docker]
+  - consul: `docker run -d -p 8500:8500 --name consul consul:latest agent -dev -client 0.0.0.0`
   - jenkins: `docker run -d -p 8080:8080 --name jenkins jenkins/jenkins:lts`
       - configure Jenkins so it can be used.

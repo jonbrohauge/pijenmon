@@ -13,7 +13,8 @@ If you wish to use another key/value store, please do not hesitate to submit a P
 
 Setup you installation by following the instructions from https://www.consul.io/[consul, window="_blank"].
 During development I have used a locally run docker container.
-__*TODO: Add how to run consul locally via docker*__
+`docker run -d -p 8500:8500 --name consul consul:latest agent -dev -client 0.0.0.0`
+This makes consul available through `http://localhost:8500`. To test the connection, try: `curl localhost:8500/v1/catalog/nodes`, and you should get a valid JSON-formatted response.
 
 == Communication
 
